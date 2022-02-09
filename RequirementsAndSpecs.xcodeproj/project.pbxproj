@@ -32,6 +32,11 @@
 		91AE989827B2FC2F0030BF26 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE989727B2FC2F0030BF26 /* Comment.swift */; };
 		91AE989C27B301A60030BF26 /* DatabaseErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE989A27B301A60030BF26 /* DatabaseErrorEnum.swift */; };
 		91AFFC5527B352FF00E36674 /* RequirementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AFFC5427B352FF00E36674 /* RequirementCell.swift */; };
+		91AFFC5727B4676D00E36674 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AFFC5627B4676D00E36674 /* User.swift */; };
+		91AFFC5927B4683300E36674 /* UserGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AFFC5827B4683300E36674 /* UserGroup.swift */; };
+		91AFFC5B27B469AC00E36674 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AFFC5A27B469AC00E36674 /* Test.swift */; };
+		91AFFC5D27B46A9100E36674 /* Defect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AFFC5C27B46A9100E36674 /* Defect.swift */; };
+		91AFFC5F27B46C1E00E36674 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AFFC5E27B46C1E00E36674 /* Role.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +64,11 @@
 		91AE989727B2FC2F0030BF26 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		91AE989A27B301A60030BF26 /* DatabaseErrorEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseErrorEnum.swift; sourceTree = "<group>"; };
 		91AFFC5427B352FF00E36674 /* RequirementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementCell.swift; sourceTree = "<group>"; };
+		91AFFC5627B4676D00E36674 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		91AFFC5827B4683300E36674 /* UserGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroup.swift; sourceTree = "<group>"; };
+		91AFFC5A27B469AC00E36674 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		91AFFC5C27B46A9100E36674 /* Defect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defect.swift; sourceTree = "<group>"; };
+		91AFFC5E27B46C1E00E36674 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,9 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				91AE985027B2EF8C0030BF26 /* RequirementsAndSpecsApp.swift */,
+				91AE986D27B2F1A80030BF26 /* Constants.swift */,
 				91AE989927B301A60030BF26 /* ErrorEnums */,
 				91AE989427B2FBCC0030BF26 /* DatabaseModels */,
-				91AE986D27B2F1A80030BF26 /* Constants.swift */,
 				91AE988C27B2F5EE0030BF26 /* Managers */,
 				91AE987D27B2F4410030BF26 /* ViewModels */,
 				91AE987427B2F36E0030BF26 /* Extensions */,
@@ -171,6 +181,11 @@
 			isa = PBXGroup;
 			children = (
 				91AE989527B2FC0D0030BF26 /* Requirement.swift */,
+				91AFFC5627B4676D00E36674 /* User.swift */,
+				91AFFC5E27B46C1E00E36674 /* Role.swift */,
+				91AFFC5827B4683300E36674 /* UserGroup.swift */,
+				91AFFC5A27B469AC00E36674 /* Test.swift */,
+				91AFFC5C27B46A9100E36674 /* Defect.swift */,
 				91AE989727B2FC2F0030BF26 /* Comment.swift */,
 			);
 			path = DatabaseModels;
@@ -266,11 +281,14 @@
 				91AE988327B2F49F0030BF26 /* AddRequirementViewModel.swift in Sources */,
 				91AE987A27B2F36E0030BF26 /* Date+Extensions.swift in Sources */,
 				91AE987C27B2F4140030BF26 /* RequirementListViewModel.swift in Sources */,
+				91AFFC5D27B46A9100E36674 /* Defect.swift in Sources */,
+				91AFFC5B27B469AC00E36674 /* Test.swift in Sources */,
 				91AFFC5527B352FF00E36674 /* RequirementCell.swift in Sources */,
 				91AE989627B2FC0D0030BF26 /* Requirement.swift in Sources */,
 				91AE987827B2F36E0030BF26 /* Extensions.swift in Sources */,
 				91AE989827B2FC2F0030BF26 /* Comment.swift in Sources */,
 				91AE988127B2F4870030BF26 /* RequirementViewModel.swift in Sources */,
+				91AFFC5727B4676D00E36674 /* User.swift in Sources */,
 				91AE986B27B2F13E0030BF26 /* Log.swift in Sources */,
 				91AE986627B2F1120030BF26 /* RequirementDetailView.swift in Sources */,
 				91AE986827B2F1120030BF26 /* AddCommentView.swift in Sources */,
@@ -279,7 +297,9 @@
 				91AE988B27B2F5920030BF26 /* DatabaseManager.swift in Sources */,
 				91AE988527B2F4F50030BF26 /* AddCommentViewModel.swift in Sources */,
 				91AE989C27B301A60030BF26 /* DatabaseErrorEnum.swift in Sources */,
+				91AFFC5927B4683300E36674 /* UserGroup.swift in Sources */,
 				91AE987927B2F36E0030BF26 /* View+Extensions.swift in Sources */,
+				91AFFC5F27B46C1E00E36674 /* Role.swift in Sources */,
 				91AE987F27B2F46B0030BF26 /* RequirementDetailViewModel.swift in Sources */,
 				91AE986E27B2F1A80030BF26 /* Constants.swift in Sources */,
 			);
