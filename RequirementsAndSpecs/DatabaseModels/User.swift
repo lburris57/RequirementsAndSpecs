@@ -14,10 +14,26 @@ class User : Object
     @Persisted var userId : String = Constants.EMPTY_STRING
     @Persisted var userName : String = Constants.EMPTY_STRING
     @Persisted var password : String = Constants.EMPTY_STRING
-    @Persisted var dateCreated: String = Constants.EMPTY_STRING
-    @Persisted var lastUpdated: String = Constants.EMPTY_STRING
+    @Persisted var dateCreated: String = Date().asFormattedString()
+    @Persisted var lastUpdated: String = Date().asFormattedString()
     
-    @Persisted var groups = List<UserGroup>()
-    @Persisted var roles = List<Role>()
-    @Persisted var defects = List<Defect>()
+    @Persisted var groupList = List<UserGroup>()
+    @Persisted var roleList = List<Role>()
+    @Persisted var defectList = List<Defect>()
+    
+    //  Computed fields to convert List<> into array
+    var groups: [UserGroup]
+    {
+        return DatabaseManager.convertToArrayFromList(results: groupList)
+    }
+    
+    var roles: [Role]
+    {
+        return DatabaseManager.convertToArrayFromList(results: roleList)
+    }
+    
+    var defects: [Defect]
+    {
+        return DatabaseManager.convertToArrayFromList(results: defectList)
+    }
 }

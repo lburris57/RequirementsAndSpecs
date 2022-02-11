@@ -22,7 +22,7 @@ enum SearchType: String, Identifiable, CaseIterable, Hashable
     case category = "Category"
     case priority = "Priority"
     case complexity = "Complexity"
-    
+    case lastUpdated = "Last Updated"
 }
 
 extension SearchType
@@ -47,6 +47,8 @@ extension SearchType
                 return "Priority"
             case .complexity:
                 return "Complexity"
+            case .lastUpdated:
+                return "Last Updated"
         }
     }
 }
@@ -56,11 +58,10 @@ struct RequirementListView: View
     @StateObject var requirementListViewModel = RequirementListViewModel()
 
     @State private var isPresented: Bool = false
+    @State private var showSearchCriteria: Bool = false
     @State private var selectedSearchType: SearchType = .requirementId
     @State private var searchText = Constants.EMPTY_STRING
     
-    var promptString = Constants.EMPTY_STRING
-
     private func deleteRequirement(at indexSet: IndexSet)
     {
         indexSet.forEach
@@ -69,11 +70,18 @@ struct RequirementListView: View
 
             let requirement = requirementListViewModel.requirements[index]
 
-            // Delete the requirement
-            requirementListViewModel.deleteRequirement(requirement)
+            // Delete the requirement only if there are more than one requirement
+            if requirementListViewModel.requirements.count > 1
+            {
+                requirementListViewModel.deleteRequirement(requirement)
 
-            // Refresh the requirements list in the view model
-            requirementListViewModel.retrieveRequirementList()
+                // Refresh the requirements list in the view model
+                requirementListViewModel.retrieveRequirementList()
+            }
+            else
+            {
+                //  Show alert to the user
+            }
         }
     }
     
@@ -91,24 +99,26 @@ struct RequirementListView: View
             }
             else
             {
-                HStack
+                VStack(spacing: 0)
                 {
-                    Text(" Filter By:").foregroundColor(Color.secondary)
-
-                    Picker("Search Type", selection: $selectedSearchType)
+                    HStack
                     {
-                        ForEach(SearchType.allCases)
+                        Text(" Filter By:").foregroundColor(Color.secondary)
+
+                        Picker("Search Type", selection: $selectedSearchType)
                         {
-                            searchType in
+                            ForEach(SearchType.allCases)
+                            {
+                                searchType in
 
-                            Text(searchType.searchType).tag(searchType)
-                        }
-                    }.pickerStyle(.menu)
-                    
+                                Text(searchType.searchType).tag(searchType)
+                            }
+                        }.pickerStyle(.menu)
+                        
+                        Spacer()
 
-                    Spacer()
-
-                }.padding(.horizontal)
+                    }.padding(.horizontal)
+                }
                 
                 List
                 {
@@ -119,7 +129,7 @@ struct RequirementListView: View
                     ForEach(filteredRequirements, id: \.id)
                     {
                         requirement in
-
+                        
                         NavigationLink(destination: RequirementDetailView(requirement: requirement))
                         {
                             RequirementCell(requirement: requirement)
@@ -165,21 +175,23 @@ struct RequirementListView: View
             switch selectedSearchType
             {
                 case .requirementId:
-                    return filteredRequirements.filter {$0.requirementId.contains(searchText)}
+                    return filteredRequirements.filter {$0.requirementId.lowercased().contains(searchText.lowercased())}
                 case .title:
-                    return filteredRequirements.filter {$0.title.contains(searchText)}
+                    return filteredRequirements.filter {$0.title.lowercased().contains(searchText.lowercased())}
                 case .description:
-                    return filteredRequirements.filter {$0.descriptionText.contains(searchText)}
+                    return filteredRequirements.filter {$0.descriptionText.lowercased().contains(searchText.lowercased())}
                 case .group:
-                    return filteredRequirements.filter {$0.group.contains(searchText)}
+                    return filteredRequirements.filter {$0.group.lowercased().contains(searchText.lowercased())}
                 case .status:
-                    return filteredRequirements.filter {$0.status.contains(searchText)}
+                    return filteredRequirements.filter {$0.status.lowercased().contains(searchText.lowercased())}
                 case .category:
-                    return filteredRequirements.filter {$0.category.contains(searchText)}
+                    return filteredRequirements.filter {$0.category.lowercased().contains(searchText.lowercased())}
                 case .priority:
-                    return filteredRequirements.filter {$0.priority.contains(searchText)}
+                    return filteredRequirements.filter {$0.priority.lowercased().contains(searchText.lowercased())}
                 case .complexity:
-                    return filteredRequirements.filter {$0.complexity.contains(searchText)}
+                    return filteredRequirements.filter {$0.complexity.lowercased().contains(searchText.lowercased())}
+                case .lastUpdated:
+                    return filteredRequirements.filter {$0.lastUpdated.lowercased().contains(searchText.lowercased())}
             }
         }
     }

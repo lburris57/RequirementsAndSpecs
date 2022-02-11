@@ -25,8 +25,14 @@ class Requirement : Object
     @Persisted var relatedDocuments : String = Constants.EMPTY_STRING
     @Persisted var unitTestId : String = Constants.EMPTY_STRING
     @Persisted var behavioralTestId : String = Constants.EMPTY_STRING
-    @Persisted var dateCreated: String = Constants.EMPTY_STRING
-    @Persisted var lastUpdated: String = Constants.EMPTY_STRING
+    @Persisted var dateCreated: String = Date().asFormattedString()
+    @Persisted var lastUpdated: String = Date().asFormattedString()
     
-    @Persisted var comments = List<Comment>()
+    @Persisted var commentList = List<Comment>()
+    
+    //  Computed field to convert List<> into array
+    var comments: [Comment]
+    {
+        return DatabaseManager.convertToArrayFromList(results: commentList)
+    }
 }

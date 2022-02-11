@@ -14,8 +14,14 @@ class UserGroup : Object
     @Persisted var groupId : String = Constants.EMPTY_STRING
     @Persisted var groupName : String = Constants.EMPTY_STRING
     @Persisted var userId : String = Constants.EMPTY_STRING
-    @Persisted var dateCreated: String = Constants.EMPTY_STRING
-    @Persisted var lastUpdated: String = Constants.EMPTY_STRING
+    @Persisted var dateCreated: String = Date().asFormattedString()
+    @Persisted var lastUpdated: String = Date().asFormattedString()
     
-    @Persisted var users = List<User>()
+    @Persisted var userList = List<User>()
+    
+    //  Computed field to convert List<> into array
+    var users: [User]
+    {
+        return DatabaseManager.convertToArrayFromList(results: userList)
+    }
 }

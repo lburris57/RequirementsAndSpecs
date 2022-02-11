@@ -319,7 +319,7 @@ struct AddRequirementView: View
                     
                     VStack(alignment: .leading, spacing: 5)
                     {
-                        Text(" Enter Description:")
+                        Text(" Description:")
                             .foregroundColor(Color.secondary)
                             .padding(.horizontal)
                         
@@ -331,7 +331,7 @@ struct AddRequirementView: View
                     
                     HStack
                     {
-                        Text(" Select Group:")
+                        Text(" Group:")
                             .foregroundColor(Color.secondary)
                         
                         Picker("Group", selection: $selectedCreatedBy)
@@ -346,7 +346,7 @@ struct AddRequirementView: View
                     
                     HStack
                     {
-                        Text(" Select Status:")
+                        Text(" Status:")
                             .foregroundColor(Color.secondary)
                         
                         Picker("Status", selection: $selectedStatus)
@@ -361,7 +361,7 @@ struct AddRequirementView: View
 
                     HStack
                     {
-                        Text(" Select Category:")
+                        Text(" Category:")
                             .foregroundColor(Color.secondary)
                         
                         Picker(Constants.EMPTY_STRING, selection: $selectedCategory)
@@ -378,7 +378,7 @@ struct AddRequirementView: View
                     
                     HStack
                     {
-                        Text(" Select Priority:")
+                        Text(" Priority:")
                             .foregroundColor(Color.secondary)
                         
                         Picker("Priority", selection: $selectedPriority)
@@ -393,7 +393,7 @@ struct AddRequirementView: View
 
                     VStack(alignment: .leading)
                     {
-                        Text(" Select Complexity:").foregroundColor(Color.secondary)
+                        Text(" Complexity:").foregroundColor(Color.secondary)
                         
                         Picker("Complexity", selection: $selectedComplexity)
                         {

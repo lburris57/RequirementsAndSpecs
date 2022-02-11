@@ -10,11 +10,6 @@ import RealmSwift
 
 class DatabaseManager
 {
-    let shortDateFormatter = DateFormatter()
-    let fullDateFormatter = DateFormatter()
-    let timeFormatter = DateFormatter()
-    let dateStringFormatter = DateFormatter()
-    
     let today = Date()
     
     //  Create a new Realm database
@@ -34,12 +29,37 @@ class DatabaseManager
         }
         catch
         {
-            Log.error("Error retrieving requirements list: \(error.localizedDescription)")
+            Log.error("Error retrieving requirement list: \(error.localizedDescription)")
             
             throw DatabaseErrorEnum.readFromDatabase
         }
         
+        Log.info("\(Realm.Configuration.defaultConfiguration.fileURL!)")
+        
         return requirements
+    }
+    
+    static func retrieveAllComments() throws -> [Comment]
+    {
+        var comments = [Comment]()
+        
+        do
+        {
+            try realm.write
+            {
+                comments = convertToArray(results: realm.objects(Comment.self))
+            }
+        }
+        catch
+        {
+            Log.error("Error retrieving comment list: \(error.localizedDescription)")
+            
+            throw DatabaseErrorEnum.readFromDatabase
+        }
+        
+        Log.info("\(Realm.Configuration.defaultConfiguration.fileURL!)")
+        
+        return comments
     }
     
     static func retrieveRequirementById(_ requirementId: String) throws -> Requirement?
@@ -60,7 +80,32 @@ class DatabaseManager
             throw DatabaseErrorEnum.readFromDatabase
         }
         
+        Log.info("\(Realm.Configuration.defaultConfiguration.fileURL!)")
+        
         return requirement
+    }
+    
+    static func retrieveCommentsByRequirement(_ requirement: Requirement) throws -> [Comment]
+    {
+        var comments = [Comment]()
+            
+        do
+        {
+            try realm.write
+            {
+                comments = convertToArray(results: realm.objects(Comment.self).filter("requirementId == '\(requirement.requirementId)'"))
+            }
+        }
+        catch
+        {
+            Log.error("Error retrieving comments related to \(requirement.requirementId): \(error.localizedDescription)")
+            
+            throw DatabaseErrorEnum.readFromDatabase
+        }
+        
+        Log.info("\(Realm.Configuration.defaultConfiguration.fileURL!)")
+        
+        return comments
     }
     
     static func retrieveCommentsByRequirementId(_ requirementId: String) throws -> [Comment]
@@ -80,6 +125,8 @@ class DatabaseManager
             
             throw DatabaseErrorEnum.readFromDatabase
         }
+        
+        Log.info("\(Realm.Configuration.defaultConfiguration.fileURL!)")
         
         return comments
     }
@@ -104,6 +151,8 @@ class DatabaseManager
             
             throw DatabaseErrorEnum.saveToDatabase
         }
+        
+        try linkCommentsToRequirements()
         
         Log.info("\(Realm.Configuration.defaultConfiguration.fileURL!)")
     }
@@ -136,7 +185,7 @@ class DatabaseManager
             }
             
             //  Link the comments to the requirement
-            try linkCommentsToRequirement(comment.requirementId)
+            try linkCommentsToRequirements()
         }
         catch
         {
@@ -151,22 +200,27 @@ class DatabaseManager
     // MARK: Delete Functions
     static func deleteRequirement(_ requirement: Requirement) throws
     {
+        let requirementId = requirement.requirementId
+        
         do
         {
-            Log.info("Deleting requirement \(requirement.requirementId)...")
+            Log.info("Deleting requirement \(requirementId)...")
             
             try realm.write
             {
+                let comments = convertToArray(results: realm.objects(Comment.self).filter("requirementId == '\(requirementId)'"))
+                
+                realm.delete(comments)
                 realm.delete(requirement)
                 
-                Log.info("Requirement \(requirement.requirementId) has successfully been deleted from the database!!")
+                Log.info("Requirement \(requirementId) has successfully been deleted from the database along with any associated comments!!")
             }
         }
         catch
         {
-            Log.error("Error deleting requirement \(requirement.requirementId) to the database: \(error.localizedDescription)")
+            Log.error("Error deleting requirement \(requirementId) from the database: \(error.localizedDescription)")
             
-            throw DatabaseErrorEnum.saveToDatabase
+            throw DatabaseErrorEnum.deleteFromDatabase
         }
         
         Log.info("\(Realm.Configuration.defaultConfiguration.fileURL!)")
@@ -174,22 +228,53 @@ class DatabaseManager
     
     static func deleteComment(_ comment: Comment) throws
     {
+        let commentTitle = comment.title
+        let requirementId = comment.requirementId
+        
         do
         {
-            Log.info("Deleting \(comment.title)...")
+            Log.info("Deleting \(commentTitle)...")
             
             try realm.write
             {
+                var fetchedComments = convertToArray(results: realm.objects(Comment.self).filter("requirementId == '\(requirementId)'"))
+                
+                Log.info("Count of fetchedComments is: \(fetchedComments.count)")
+                
+                let index = fetchedComments.firstIndex(of: comment)
+                
+                fetchedComments.remove(at: index ?? 0)
+                
+                Log.info("Count of fetchedComments after removal is: \(fetchedComments.count)")
+                
+                //  Delete the incoming comment
                 realm.delete(comment)
                 
-                Log.info("\(comment.title) has successfully been deleted from the database!!")
+                if let requirement = realm.objects(Requirement.self).filter("requirementId == '\(requirementId)'").first
+                {
+                    //  Remove any existing comments from the requirement
+                    requirement.commentList.removeAll()
+                    
+                    if fetchedComments.count > 0
+                    {
+                        //  Add the updated comment list to the requirement
+                        requirement.commentList.append(objectsIn: fetchedComments)
+                    }
+                    
+                    //  Update the requirement in the database
+                    realm.add(requirement, update: .modified)
+                }
+                
+                Log.info("\(commentTitle) has successfully been deleted from the database and the parent requirement has been updated with refreshed comment list!!")
             }
+            
+            try linkCommentsToRequirements()
         }
         catch
         {
-            Log.error("Error deleting \(comment.title) to the database: \(error.localizedDescription)")
+            Log.error("Error deleting \(commentTitle) to the database: \(error.localizedDescription)")
             
-            throw DatabaseErrorEnum.saveToDatabase
+            throw DatabaseErrorEnum.deleteFromDatabase
         }
         
         Log.info("\(Realm.Configuration.defaultConfiguration.fileURL!)")
@@ -201,13 +286,25 @@ class DatabaseManager
         //  Retrieve all comments based on the requirementId, retrieve the requirement object and assign the comments and save the requirement object
         do
         {
-            let comments = try retrieveCommentsByRequirementId(requirementId)
+            var comments = try retrieveCommentsByRequirementId(requirementId)
             
             if let requirement = try retrieveRequirementById(requirementId)
             {
                 try realm.write
                 {
-                    requirement.comments.append(objectsIn: comments)
+                    //  Remove any existing comments from the requirement
+                    requirement.commentList.removeAll()
+                    
+                    if comments.count == 0
+                    {
+                        let comment = Comment()
+                        
+                        comment.requirementId = requirementId
+                        
+                        comments.append(comment)
+                    }
+                    
+                    requirement.commentList.append(objectsIn: comments)
                     
                     realm.add(requirement, update: .modified)
                 
@@ -221,10 +318,82 @@ class DatabaseManager
             
             throw DatabaseErrorEnum.saveToDatabase
         }
+        
+        Log.info("\(Realm.Configuration.defaultConfiguration.fileURL!)")
     }
     
-    //  Converts a Realm Results<R> object into an array of Realm objects of that type
-    private static func convertToArray<R>(results: Results<R>) -> [R] where R: Object
+    static func linkCommentsToRequirements() throws
+    {
+        do
+        {
+            let requirements = try retrieveAllRequirements()
+            let comments = try retrieveAllComments()
+            
+            if requirements.count == 0
+            {
+                return
+            }
+            
+            try realm.write
+            {
+                for requirement in requirements
+                {
+                    let requirementId = requirement.requirementId
+                    
+                    if requirement.commentList.count > 0
+                    {
+                        //  Remove any existing comments from the requirement
+                        requirement.commentList.removeAll()
+                    }
+                    
+                    for comment in comments
+                    {
+                        if comment.requirementId == requirementId
+                        {
+                            requirement.commentList.append(comment)
+                        }
+                    }
+                    
+                    Log.info("Size of commentList in requirement \(requirement.requirementId) is: \(requirement.commentList.count)")
+                    Log.info("Size of comments in requirement \(requirement.requirementId) is: \(requirement.comments.count)")
+                    
+                    realm.add(requirement, update: .modified)
+                    
+                    //  Remove any comments that are not linked to a requirement
+                    let unlinkedComments = convertToArray(results: realm.objects(Comment.self).filter("requirementId == ''"))
+                    
+                    realm.delete(unlinkedComments)
+                }
+
+                Log.info("Comments have successfully been linked to requirements!!")
+                Log.info("\(Realm.Configuration.defaultConfiguration.fileURL!)")
+            }
+        }
+        catch
+        {
+            Log.error("Error linking comments to requirements: \(error.localizedDescription)")
+            
+            throw DatabaseErrorEnum.saveToDatabase
+        }
+        
+        Log.info("\(Realm.Configuration.defaultConfiguration.fileURL!)")
+    }
+    
+    //  Converts a Realm Results object into an array of Realm objects of that type
+    static func convertToArray<R>(results: Results<R>) -> [R] where R: Object
+    {
+        var arrayOfResults: [R] = []
+        
+        for result in results
+        {
+            arrayOfResults.append(result)
+        }
+        
+        return arrayOfResults
+    }
+    
+    //  Converts a Realm List object into an array of Realm objects of that type
+    static func convertToArrayFromList<R>(results: List<R>) -> [R]  where R: Object
     {
         var arrayOfResults: [R] = []
         

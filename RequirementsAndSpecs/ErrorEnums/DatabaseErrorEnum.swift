@@ -11,4 +11,5 @@ enum DatabaseErrorEnum: Error
 {
     case saveToDatabase
     case readFromDatabase
+    case deleteFromDatabase
 }

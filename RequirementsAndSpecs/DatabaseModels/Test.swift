@@ -15,8 +15,14 @@ class Test : Object
     @Persisted var title : String = Constants.EMPTY_STRING
     @Persisted var descriptionText : String = Constants.EMPTY_STRING
     @Persisted var testType : String = Constants.EMPTY_STRING
-    @Persisted var dateCreated: String = Constants.EMPTY_STRING
-    @Persisted var lastUpdated: String = Constants.EMPTY_STRING
+    @Persisted var dateCreated: String = Date().asFormattedString()
+    @Persisted var lastUpdated: String = Date().asFormattedString()
     
-    @Persisted var requirements = List<Requirement>()
+    @Persisted var requirementList = List<Requirement>()
+    
+    //  Computed field to convert List<> into array
+    var requirements: [Requirement]
+    {
+        return DatabaseManager.convertToArrayFromList(results: requirementList)
+    }
 }

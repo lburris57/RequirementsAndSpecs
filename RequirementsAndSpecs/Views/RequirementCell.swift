@@ -38,7 +38,7 @@ struct RequirementCell: View
                 HStack
                 {
                     Circle()
-                        .fill(styleForPriority(requirement.priority))
+                    .fill(styleForPriority(requirement.priority))
                     .frame(width: 15, height: 15)
                     
                     Text("\(requirement.requirementId) \(requirement.title)")

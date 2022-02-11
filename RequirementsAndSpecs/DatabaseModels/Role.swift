@@ -13,8 +13,14 @@ class Role : Object
     @Persisted(primaryKey: true) var id : String = UUID().uuidString
     @Persisted var roleId : String = Constants.EMPTY_STRING
     @Persisted var roleName : String = Constants.EMPTY_STRING
-    @Persisted var dateCreated: String = Constants.EMPTY_STRING
-    @Persisted var lastUpdated: String = Constants.EMPTY_STRING
+    @Persisted var dateCreated: String = Date().asFormattedString()
+    @Persisted var lastUpdated: String = Date().asFormattedString()
     
-    @Persisted var users = List<User>()
+    @Persisted var userList = List<User>()
+    
+    //  Computed field to convert List<> into array
+    var users: [User]
+    {
+        return DatabaseManager.convertToArrayFromList(results: userList)
+    }
 }

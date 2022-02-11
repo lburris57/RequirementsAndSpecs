@@ -16,8 +16,8 @@ class Comment : Object
     @Persisted var title: String = Constants.EMPTY_STRING
     @Persisted var author : String = Constants.EMPTY_STRING
     @Persisted var commentText : String = Constants.EMPTY_STRING
-    @Persisted var dateCreated: String = Constants.EMPTY_STRING
-    @Persisted var lastUpdated: String = Constants.EMPTY_STRING
+    @Persisted var dateCreated: String = Date().asFormattedString()
+    @Persisted var lastUpdated: String = Date().asFormattedString()
     
-    @Persisted(originProperty: "comments") var parentRequirement : LinkingObjects<Requirement>
+    @Persisted(originProperty: "commentList") var parentRequirement : LinkingObjects<Requirement>
 }

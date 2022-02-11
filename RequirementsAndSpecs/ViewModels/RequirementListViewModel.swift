@@ -63,6 +63,8 @@ class RequirementListViewModel: ObservableObject
     {
         isLoading = true
         
+        let requirementId = requirement.requirementId
+        
         defer
         {
             isLoading = false
@@ -75,7 +77,7 @@ class RequirementListViewModel: ObservableObject
         catch
         {
             showAlert = true
-            errorMessage = "Error occurred while deleting requirement \(requirement.requirementId) from the database."
+            errorMessage = "Error occurred while deleting requirement \(requirementId) from the database."
         }
     }
 }

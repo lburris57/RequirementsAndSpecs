@@ -15,11 +15,6 @@ class RequirementDetailViewModel: ObservableObject
     @Published var showAlert = false
     @Published var errorMessage: String = Constants.EMPTY_STRING
     
-    init()
-    {
-        retrieveRequirement(requirement.requirementId)
-    }
-    
     func retrieveRequirement(_ requirementId: String)
     {
         do
@@ -31,12 +26,37 @@ class RequirementDetailViewModel: ObservableObject
                 isLoading = false
             }
 
-            requirement = try DatabaseManager.retrieveRequirementById(requirementId) ?? Requirement()
+            if let retrievedRequirement = try DatabaseManager.retrieveRequirementById(requirementId)
+            {
+                requirement = retrievedRequirement
+            }
         }
         catch
         {
             showAlert = true
             errorMessage = "Error occurred while retrieving requirement \(requirementId) from the database."
+        }
+    }
+    
+    func deleteComment(_ comment: Comment)
+    {
+        let commentTitle = comment.title
+        
+        do
+        {
+            isLoading = true
+
+            defer
+            {
+                isLoading = false
+            }
+            
+            try DatabaseManager.deleteComment(comment)
+        }
+        catch
+        {
+            showAlert = true
+            errorMessage = "Error occurred while deleting comment \(commentTitle) from the database."
         }
     }
 }
