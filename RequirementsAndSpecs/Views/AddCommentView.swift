@@ -34,6 +34,7 @@ struct AddCommentView: View
         addCommentViewModel.saveComment(comment)
     }
     
+    //  Clears all the fields in the view
     private func clearAllFields()
     {
         title = Constants.EMPTY_STRING

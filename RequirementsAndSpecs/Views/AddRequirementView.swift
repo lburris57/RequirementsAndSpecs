@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+//Enums
 enum Category: String, Identifiable, CaseIterable, Hashable
 {
     var id: UUID

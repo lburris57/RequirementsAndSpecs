@@ -53,6 +53,7 @@ struct RequirementDetailView: View
         requirementDetailViewModel.retrieveRequirement(requirement.requirementId)
     }
     
+    //  Comment count must be greater than 1 to activate deletions
     func setCommentCount()
     {
         commentListCount = requirement.comments.count

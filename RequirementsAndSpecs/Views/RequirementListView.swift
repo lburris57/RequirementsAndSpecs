@@ -7,6 +7,7 @@
 //
 import SwiftUI
 
+// Enums
 enum SearchType: String, Identifiable, CaseIterable, Hashable
 {
     var id: UUID

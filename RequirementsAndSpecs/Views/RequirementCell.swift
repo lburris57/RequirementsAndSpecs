@@ -7,6 +7,7 @@
 //
 import SwiftUI
 
+//  Represents a cell in a table
 struct RequirementCell: View
 {
     let requirement: Requirement
