@@ -37,6 +37,32 @@
 		91AFFC5B27B469AC00E36674 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AFFC5A27B469AC00E36674 /* Test.swift */; };
 		91AFFC5D27B46A9100E36674 /* Defect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AFFC5C27B46A9100E36674 /* Defect.swift */; };
 		91AFFC5F27B46C1E00E36674 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AFFC5E27B46C1E00E36674 /* Role.swift */; };
+		91AFFC7B27B751A200E36674 /* spotlight120.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC6127B751A200E36674 /* spotlight120.png */; };
+		91AFFC7C27B751A200E36674 /* ipad76.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC6227B751A200E36674 /* ipad76.png */; };
+		91AFFC7D27B751A200E36674 /* notification40.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC6327B751A200E36674 /* notification40.png */; };
+		91AFFC7E27B751A200E36674 /* settings87.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC6427B751A200E36674 /* settings87.png */; };
+		91AFFC7F27B751A200E36674 /* spotlight80.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC6527B751A200E36674 /* spotlight80.png */; };
+		91AFFC8027B751A200E36674 /* mac16.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC6627B751A200E36674 /* mac16.png */; };
+		91AFFC8127B751A200E36674 /* mac64.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC6727B751A200E36674 /* mac64.png */; };
+		91AFFC8227B751A200E36674 /* ipadPro167.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC6827B751A200E36674 /* ipadPro167.png */; };
+		91AFFC8327B751A200E36674 /* ipad152.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC6927B751A200E36674 /* ipad152.png */; };
+		91AFFC8427B751A200E36674 /* mac256.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC6A27B751A200E36674 /* mac256.png */; };
+		91AFFC8527B751A200E36674 /* ipadSettings29.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC6B27B751A200E36674 /* ipadSettings29.png */; };
+		91AFFC8627B751A200E36674 /* mac1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC6C27B751A200E36674 /* mac1024.png */; };
+		91AFFC8727B751A200E36674 /* mac128.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC6D27B751A200E36674 /* mac128.png */; };
+		91AFFC8827B751A200E36674 /* iphone120.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC6E27B751A200E36674 /* iphone120.png */; };
+		91AFFC8927B751A200E36674 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC6F27B751A200E36674 /* Contents.json */; };
+		91AFFC8A27B751A200E36674 /* ipadNotification20.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC7027B751A200E36674 /* ipadNotification20.png */; };
+		91AFFC8B27B751A200E36674 /* mac512.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC7127B751A200E36674 /* mac512.png */; };
+		91AFFC8C27B751A200E36674 /* ipadSpotlight40.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC7227B751A200E36674 /* ipadSpotlight40.png */; };
+		91AFFC8D27B751A200E36674 /* mac32.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC7327B751A200E36674 /* mac32.png */; };
+		91AFFC8E27B751A200E36674 /* notification60.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC7427B751A200E36674 /* notification60.png */; };
+		91AFFC8F27B751A200E36674 /* ipadSpotlight80.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC7527B751A200E36674 /* ipadSpotlight80.png */; };
+		91AFFC9027B751A200E36674 /* settings58.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC7627B751A200E36674 /* settings58.png */; };
+		91AFFC9127B751A200E36674 /* iphone180.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC7727B751A200E36674 /* iphone180.png */; };
+		91AFFC9227B751A200E36674 /* appstore1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC7827B751A200E36674 /* appstore1024.png */; };
+		91AFFC9327B751A200E36674 /* ipadSettings58.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC7927B751A200E36674 /* ipadSettings58.png */; };
+		91AFFC9427B751A200E36674 /* ipadNotification40.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC7A27B751A200E36674 /* ipadNotification40.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +95,33 @@
 		91AFFC5A27B469AC00E36674 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		91AFFC5C27B46A9100E36674 /* Defect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defect.swift; sourceTree = "<group>"; };
 		91AFFC5E27B46C1E00E36674 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
+		91AFFC6127B751A200E36674 /* spotlight120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spotlight120.png; sourceTree = "<group>"; };
+		91AFFC6227B751A200E36674 /* ipad76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad76.png; sourceTree = "<group>"; };
+		91AFFC6327B751A200E36674 /* notification40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification40.png; sourceTree = "<group>"; };
+		91AFFC6427B751A200E36674 /* settings87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings87.png; sourceTree = "<group>"; };
+		91AFFC6527B751A200E36674 /* spotlight80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spotlight80.png; sourceTree = "<group>"; };
+		91AFFC6627B751A200E36674 /* mac16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mac16.png; sourceTree = "<group>"; };
+		91AFFC6727B751A200E36674 /* mac64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mac64.png; sourceTree = "<group>"; };
+		91AFFC6827B751A200E36674 /* ipadPro167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadPro167.png; sourceTree = "<group>"; };
+		91AFFC6927B751A200E36674 /* ipad152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad152.png; sourceTree = "<group>"; };
+		91AFFC6A27B751A200E36674 /* mac256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mac256.png; sourceTree = "<group>"; };
+		91AFFC6B27B751A200E36674 /* ipadSettings29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadSettings29.png; sourceTree = "<group>"; };
+		91AFFC6C27B751A200E36674 /* mac1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mac1024.png; sourceTree = "<group>"; };
+		91AFFC6D27B751A200E36674 /* mac128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mac128.png; sourceTree = "<group>"; };
+		91AFFC6E27B751A200E36674 /* iphone120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone120.png; sourceTree = "<group>"; };
+		91AFFC6F27B751A200E36674 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
+		91AFFC7027B751A200E36674 /* ipadNotification20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadNotification20.png; sourceTree = "<group>"; };
+		91AFFC7127B751A200E36674 /* mac512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mac512.png; sourceTree = "<group>"; };
+		91AFFC7227B751A200E36674 /* ipadSpotlight40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadSpotlight40.png; sourceTree = "<group>"; };
+		91AFFC7327B751A200E36674 /* mac32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mac32.png; sourceTree = "<group>"; };
+		91AFFC7427B751A200E36674 /* notification60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification60.png; sourceTree = "<group>"; };
+		91AFFC7527B751A200E36674 /* ipadSpotlight80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadSpotlight80.png; sourceTree = "<group>"; };
+		91AFFC7627B751A200E36674 /* settings58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings58.png; sourceTree = "<group>"; };
+		91AFFC7727B751A200E36674 /* iphone180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone180.png; sourceTree = "<group>"; };
+		91AFFC7827B751A200E36674 /* appstore1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appstore1024.png; sourceTree = "<group>"; };
+		91AFFC7927B751A200E36674 /* ipadSettings58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadSettings58.png; sourceTree = "<group>"; };
+		91AFFC7A27B751A200E36674 /* ipadNotification40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadNotification40.png; sourceTree = "<group>"; };
+		91AFFC9727B835F600E36674 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +156,7 @@
 		91AE984F27B2EF8C0030BF26 /* RequirementsAndSpecs */ = {
 			isa = PBXGroup;
 			children = (
+				91AFFC9727B835F600E36674 /* Info.plist */,
 				91AE985027B2EF8C0030BF26 /* RequirementsAndSpecsApp.swift */,
 				91AE986D27B2F1A80030BF26 /* Constants.swift */,
 				91AE989927B301A60030BF26 /* ErrorEnums */,
@@ -113,6 +167,7 @@
 				91AE986C27B2F1450030BF26 /* Logs */,
 				91AE985F27B2F1120030BF26 /* Views */,
 				91AE985427B2EF8F0030BF26 /* Assets.xcassets */,
+				91AFFC6027B751A200E36674 /* AppIcon.appiconset */,
 				91AE985627B2EF8F0030BF26 /* Preview Content */,
 			);
 			path = RequirementsAndSpecs;
@@ -199,6 +254,39 @@
 			path = ErrorEnums;
 			sourceTree = "<group>";
 		};
+		91AFFC6027B751A200E36674 /* AppIcon.appiconset */ = {
+			isa = PBXGroup;
+			children = (
+				91AFFC6127B751A200E36674 /* spotlight120.png */,
+				91AFFC6227B751A200E36674 /* ipad76.png */,
+				91AFFC6327B751A200E36674 /* notification40.png */,
+				91AFFC6427B751A200E36674 /* settings87.png */,
+				91AFFC6527B751A200E36674 /* spotlight80.png */,
+				91AFFC6627B751A200E36674 /* mac16.png */,
+				91AFFC6727B751A200E36674 /* mac64.png */,
+				91AFFC6827B751A200E36674 /* ipadPro167.png */,
+				91AFFC6927B751A200E36674 /* ipad152.png */,
+				91AFFC6A27B751A200E36674 /* mac256.png */,
+				91AFFC6B27B751A200E36674 /* ipadSettings29.png */,
+				91AFFC6C27B751A200E36674 /* mac1024.png */,
+				91AFFC6D27B751A200E36674 /* mac128.png */,
+				91AFFC6E27B751A200E36674 /* iphone120.png */,
+				91AFFC6F27B751A200E36674 /* Contents.json */,
+				91AFFC7027B751A200E36674 /* ipadNotification20.png */,
+				91AFFC7127B751A200E36674 /* mac512.png */,
+				91AFFC7227B751A200E36674 /* ipadSpotlight40.png */,
+				91AFFC7327B751A200E36674 /* mac32.png */,
+				91AFFC7427B751A200E36674 /* notification60.png */,
+				91AFFC7527B751A200E36674 /* ipadSpotlight80.png */,
+				91AFFC7627B751A200E36674 /* settings58.png */,
+				91AFFC7727B751A200E36674 /* iphone180.png */,
+				91AFFC7827B751A200E36674 /* appstore1024.png */,
+				91AFFC7927B751A200E36674 /* ipadSettings58.png */,
+				91AFFC7A27B751A200E36674 /* ipadNotification40.png */,
+			);
+			path = AppIcon.appiconset;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -264,8 +352,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91AFFC9327B751A200E36674 /* ipadSettings58.png in Resources */,
+				91AFFC8127B751A200E36674 /* mac64.png in Resources */,
+				91AFFC8327B751A200E36674 /* ipad152.png in Resources */,
+				91AFFC8927B751A200E36674 /* Contents.json in Resources */,
+				91AFFC7C27B751A200E36674 /* ipad76.png in Resources */,
+				91AFFC8E27B751A200E36674 /* notification60.png in Resources */,
+				91AFFC8F27B751A200E36674 /* ipadSpotlight80.png in Resources */,
+				91AFFC8427B751A200E36674 /* mac256.png in Resources */,
+				91AFFC7E27B751A200E36674 /* settings87.png in Resources */,
+				91AFFC8D27B751A200E36674 /* mac32.png in Resources */,
+				91AFFC8A27B751A200E36674 /* ipadNotification20.png in Resources */,
+				91AFFC7D27B751A200E36674 /* notification40.png in Resources */,
+				91AFFC8827B751A200E36674 /* iphone120.png in Resources */,
+				91AFFC9227B751A200E36674 /* appstore1024.png in Resources */,
+				91AFFC8B27B751A200E36674 /* mac512.png in Resources */,
+				91AFFC8C27B751A200E36674 /* ipadSpotlight40.png in Resources */,
+				91AFFC8627B751A200E36674 /* mac1024.png in Resources */,
+				91AFFC9027B751A200E36674 /* settings58.png in Resources */,
+				91AFFC8727B751A200E36674 /* mac128.png in Resources */,
+				91AFFC7F27B751A200E36674 /* spotlight80.png in Resources */,
+				91AFFC8027B751A200E36674 /* mac16.png in Resources */,
 				91AE985827B2EF8F0030BF26 /* Preview Assets.xcassets in Resources */,
+				91AFFC9427B751A200E36674 /* ipadNotification40.png in Resources */,
 				91AE985527B2EF8F0030BF26 /* Assets.xcassets in Resources */,
+				91AFFC8227B751A200E36674 /* ipadPro167.png in Resources */,
+				91AFFC9127B751A200E36674 /* iphone180.png in Resources */,
+				91AFFC7B27B751A200E36674 /* spotlight120.png in Resources */,
+				91AFFC8527B751A200E36674 /* ipadSettings29.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,9 +547,11 @@
 				DEVELOPMENT_TEAM = C37927XKUL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RequirementsAndSpecs/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -462,9 +578,11 @@
 				DEVELOPMENT_TEAM = C37927XKUL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RequirementsAndSpecs/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
