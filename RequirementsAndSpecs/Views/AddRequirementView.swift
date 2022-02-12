@@ -181,6 +181,8 @@ struct AddRequirementView: View
     
     @StateObject private var requirementListViewModel = RequirementListViewModel()
     
+    @State private var showingAlert: Bool = false
+    
     @State private var requirementId = Constants.EMPTY_STRING
     @State private var title = Constants.EMPTY_STRING
     @State private var description = Constants.EMPTY_STRING
@@ -217,7 +219,6 @@ struct AddRequirementView: View
         requirement.isCompleted = isCompleted
         
         requirementListViewModel.saveRequirement(requirement)
-        
     }
     
     //  Resets all the fields to the default values
@@ -297,7 +298,6 @@ struct AddRequirementView: View
             {
                 Log.error("Error deleting requirement \(requirementId) - \(title): \(error.localizedDescription)")
             }
-            
         }
     }
 
@@ -341,8 +341,10 @@ struct AddRequirementView: View
                                 createdBy in
                                 Text(createdBy.title).tag(createdBy)
                             }
-                        }.pickerStyle(.menu)
-                    }.padding(.horizontal)
+                        }
+                        .pickerStyle(.menu)
+                    }
+                    .padding(.horizontal)
                     
                     HStack
                     {
@@ -356,8 +358,10 @@ struct AddRequirementView: View
                                 status in
                                 Text(status.title).tag(status)
                             }
-                        }.pickerStyle(.menu)
-                    }.padding(.horizontal)
+                        }
+                        .pickerStyle(.menu)
+                    }
+                    .padding(.horizontal)
 
                     HStack
                     {
@@ -374,7 +378,8 @@ struct AddRequirementView: View
                         }
                         .pickerStyle(.menu)
                         .labelsHidden()
-                    }.padding(.horizontal)
+                    }
+                    .padding(.horizontal)
                     
                     HStack
                     {
@@ -388,8 +393,10 @@ struct AddRequirementView: View
                                 priority in
                                 Text(priority.title).tag(priority)
                             }
-                        }.pickerStyle(.menu)
-                    }.padding(.horizontal)
+                        }
+                        .pickerStyle(.menu)
+                    }
+                    .padding(.horizontal)
 
                     VStack(alignment: .leading)
                     {
@@ -402,31 +409,18 @@ struct AddRequirementView: View
                                 complexity in
                                 Text(complexity.title).tag(complexity)
                             }
-                        }.pickerStyle(.segmented)
-                    }.padding(.horizontal)
+                        }
+                        .pickerStyle(.segmented)
+                    }
+                    .padding(.horizontal)
                     
                     Group
                     {
-//                                TextField("Enter any related documents", text: $relatedDocuments)
-//                                    .textFieldStyle(.roundedBorder)
-//                                    .padding(.horizontal)
-//
-//                                TextField("Enter unit test id", text: $unitTestId)
-//                                    .textFieldStyle(.roundedBorder)
-//                                    .padding(.horizontal)
-//
-//                                TextField("Enter behavioral test id", text: $behavioralTestId)
-//                                    .textFieldStyle(.roundedBorder)
-//                                    .padding(.horizontal)
-
-                        Spacer()
-                        
                         Button("Save Requirement Information")
                         {
                             saveRequirement()
                             clearAllFields()
                             presentationMode.wrappedValue.dismiss()
-                            
                         }
                         .padding(10)
                         .frame(maxWidth: .infinity)
@@ -438,7 +432,6 @@ struct AddRequirementView: View
                         
                         Spacer()
                     }
-                        
                 }
                 .navigationTitle("Add Requirement")
                 .navigationBarTitleDisplayMode(.inline)

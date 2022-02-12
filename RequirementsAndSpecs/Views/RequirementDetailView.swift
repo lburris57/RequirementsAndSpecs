@@ -13,30 +13,32 @@ struct RequirementDetailView: View
     @StateObject private var requirementDetailViewModel = RequirementDetailViewModel()
     
     @State private var isPresented: Bool = false
+    @State private var showingAlert: Bool = false
+    @State var commentListCount: Int = 0
 
     var requirement: Requirement
     
     private func deleteComment(at indexSet: IndexSet)
     {
-        indexSet.forEach
+        // Delete the comment only if there are more than one
+        if commentListCount > 1
         {
-            index in
-            
-            let comment = requirement.comments[index]
-
-            // Delete the comment only if there are more than one comment
-            if requirementDetailViewModel.requirement.comments.count > 1
+            indexSet.forEach
             {
+                index in
+                
+                let comment = requirement.comments[index]
+
                 // Delete the comment
                 requirementDetailViewModel.deleteComment(comment)
                 
                 // Refresh the requirements list in the view model
                 loadRequirement()
             }
-            else
-            {
-                //  Show alert to the user
-            }
+        }
+        else
+        {
+            showingAlert = true
         }
     }
     
@@ -49,6 +51,13 @@ struct RequirementDetailView: View
     func loadRequirement()
     {
         requirementDetailViewModel.retrieveRequirement(requirement.requirementId)
+    }
+    
+    func setCommentCount()
+    {
+        commentListCount = requirement.comments.count
+        
+        Log.info("Number of comments in comment list is: \(commentListCount)")
     }
     
     //  Returns the color based on the priority
@@ -281,30 +290,32 @@ struct RequirementDetailView: View
                 }.navigationTitle("Requirement Details")
                 .navigationBarTitleDisplayMode(.inline)
                 .padding(8)
-                //  The following toolbar code will replace the navigation bar items code to place links across the bottom of the view
-//                .toolbar
-//                {
-//                    ToolbarItemGroup(placement: .bottomBar)
-//                    {
-//                        Button("Edit Requirement")
-//                        {
-//
-                            //  Add edit view here
-                            //  print("Edit tapped!")
-//                        }
-//
-//                        Button("Add Comment")
-//                        {
-//                            isPresented = true
-//                            loadRequirement()
-//                            AddCommentView(requirement: requirement)
-//                        }
-//                    }
-//                }
-                .navigationBarItems(trailing: Button("Add Comment")
+                .toolbar
                 {
-                    isPresented = true
-                })
+                    //  Only display the Edit button if more than one comment
+                    ToolbarItemGroup(placement: .navigationBarTrailing)
+                    {
+                        commentListCount > 1 ? EditButton() : nil
+                    }
+                    
+                    ToolbarItemGroup(placement: .bottomBar)
+                    {
+                        HStack
+                        {
+                            Button("Add Comment")
+                            {
+                                isPresented = true
+                            }
+                            
+                            Button("Edit Requirement")
+                            {
+                                //  Add edit view here
+                                print("Edit tapped!")
+                            }
+                        }
+                    }
+                }
+                    //  Add multiple full screen covers where needed
                 .fullScreenCover(isPresented: $isPresented, onDismiss:
                 {
                     loadRequirement()
@@ -316,8 +327,6 @@ struct RequirementDetailView: View
             .listStyle(.plain)
             
             
-            
-        
             VStack
             {
                 HStack
@@ -367,35 +376,22 @@ struct RequirementDetailView: View
                                     }
                                 }
                             }
+                        }.onDelete(perform: deleteComment)
+                        .alert("Error Deleting Comment", isPresented: $showingAlert)
+                        {
+                            Button("OK") {}
+                            Button("Edit Comment") {}
                         }
-                        .onDelete(perform: deleteComment)
+                        message:
+                        {
+                            Text("There must be at least two comments in the list to activate the delete functionality!\n\nPlease edit the existing comment.")
+                        }
                     }
+                    .listStyle(.plain)
                 }
             }
-            .listStyle(.plain)
-            
-            
-            
-            
-//            Button("Edit Requirement Information")
-//            {
-//                //saveRequirement()
-//                //clearAllFields()
-//                //presentationMode.wrappedValue.dismiss()
-//
-//            }
-//            .padding(10)
-//            .frame(maxWidth: .infinity)
-//            .background(Color.blue).opacity(!evaluateFields() ? 0.6 : 1)
-//            .foregroundColor(Color.white)
-//            .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
-//            .shadow(color: .black, radius: 2.0, x: 2.0, y: 2.0)
-//            .disabled(!evaluateFields())
-            
-            Spacer()
-            
-            
         }
         .padding()
+        .onAppear(perform: setCommentCount)
     }
 }

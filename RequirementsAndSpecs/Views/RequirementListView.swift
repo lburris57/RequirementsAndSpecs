@@ -58,31 +58,43 @@ struct RequirementListView: View
     @StateObject var requirementListViewModel = RequirementListViewModel()
 
     @State private var isPresented: Bool = false
+    @State private var showingAlert: Bool = false
     @State private var showSearchCriteria: Bool = false
     @State private var selectedSearchType: SearchType = .requirementId
     @State private var searchText = Constants.EMPTY_STRING
+    @State var requirementListCount: Int = 0
     
     private func deleteRequirement(at indexSet: IndexSet)
     {
-        indexSet.forEach
+        // Delete the requirement only if there are more than one
+        if requirementListCount > 1
         {
-            index in
-
-            let requirement = requirementListViewModel.requirements[index]
-
-            // Delete the requirement only if there are more than one requirement
-            if requirementListViewModel.requirements.count > 1
+            indexSet.forEach
             {
+                index in
+
+                let requirement = requirementListViewModel.requirements[index]
+
                 requirementListViewModel.deleteRequirement(requirement)
 
                 // Refresh the requirements list in the view model
                 requirementListViewModel.retrieveRequirementList()
             }
-            else
-            {
-                //  Show alert to the user
-            }
         }
+        else
+        {
+            showingAlert = true
+        }
+    }
+    
+    func presentAddRequirementView()
+    {
+        isPresented = true
+    }
+    
+    func setRequirementCount()
+    {
+        requirementListCount = requirementListViewModel.requirements.count
     }
     
     var body: some View
@@ -93,7 +105,11 @@ struct RequirementListView: View
             {
                 List
                 {
-                    Text("There are no requirements to display.")
+                    VStack(alignment: .center)
+                    {
+                        Text("There are no requirements to display.")
+                    }
+                    .padding()
                 }
                 .listStyle(.plain)
             }
@@ -103,7 +119,7 @@ struct RequirementListView: View
                 {
                     HStack
                     {
-                        Text(" Filter By:").foregroundColor(Color.secondary)
+                        Text(" Select Filter Type:").foregroundColor(Color.secondary)
 
                         Picker("Search Type", selection: $selectedSearchType)
                         {
@@ -136,7 +152,15 @@ struct RequirementListView: View
                         }
                     }
                     .onDelete(perform: deleteRequirement)
-                    
+                    .alert("Error Deleting Requirewment", isPresented: $showingAlert)
+                    {
+                        Button("OK") {}
+                        Button("Edit Requirement") {}
+                    }
+                    message:
+                    {
+                        Text("There must be at least two requirements in the list to activate the delete functionality!\n\nPlease edit the existing requirement.")
+                    }
                 }
                 .listStyle(.plain)
             }
@@ -144,10 +168,23 @@ struct RequirementListView: View
         .searchable(text: $searchText, prompt: "Filter by \(selectedSearchType.rawValue.lowercased())...")
         .navigationTitle("Requirements")
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarItems(trailing: Button("Add Requirement")
+        .toolbar
         {
-            isPresented = true
-        })
+            ToolbarItemGroup(placement: .navigationBarTrailing)
+            {
+                HStack
+                {
+                    //  Only display the Edit button if more than one requirement
+                    requirementListCount > 1 ? EditButton() : nil
+                    
+                    Button(action: presentAddRequirementView)
+                    {
+                        Label("Add Requirement", systemImage: "plus.circle.fill").foregroundColor(.blue)
+                    }
+                }
+            }
+        }
+        .onAppear(perform: setRequirementCount)
         .fullScreenCover(isPresented: $isPresented, onDismiss:
         {
             requirementListViewModel.retrieveRequirementList()

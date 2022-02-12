@@ -13,6 +13,8 @@ struct AddCommentView: View
     
     @StateObject private var addCommentViewModel = AddCommentViewModel()
     
+    @State private var showingAlert: Bool = false
+    
     @State private var title = Constants.EMPTY_STRING
     @State private var description = Constants.EMPTY_STRING
     
@@ -146,6 +148,16 @@ struct AddCommentView: View
                 })
                 .padding(8)
                 .background(.ultraThinMaterial)
+            }
+            .alert("Important Message", isPresented: $showingAlert)
+            {
+                //Button("Delete", role: .destructive) {}
+                Button("OK") {}
+                //Button("Cancel", role: .cancel) {}
+            }
+            message:
+            {
+                Text("Read my important information!")
             }
         }
     }
