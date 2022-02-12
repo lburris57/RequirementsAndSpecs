@@ -63,6 +63,7 @@
 		91AFFC9227B751A200E36674 /* appstore1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC7827B751A200E36674 /* appstore1024.png */; };
 		91AFFC9327B751A200E36674 /* ipadSettings58.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC7927B751A200E36674 /* ipadSettings58.png */; };
 		91AFFC9427B751A200E36674 /* ipadNotification40.png in Resources */ = {isa = PBXBuildFile; fileRef = 91AFFC7A27B751A200E36674 /* ipadNotification40.png */; };
+		91AFFC9927B850DD00E36674 /* PDFUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AFFC9827B850DD00E36674 /* PDFUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +123,7 @@
 		91AFFC7927B751A200E36674 /* ipadSettings58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadSettings58.png; sourceTree = "<group>"; };
 		91AFFC7A27B751A200E36674 /* ipadNotification40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadNotification40.png; sourceTree = "<group>"; };
 		91AFFC9727B835F600E36674 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		91AFFC9827B850DD00E36674 /* PDFUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 			children = (
 				91AFFC9727B835F600E36674 /* Info.plist */,
 				91AE985027B2EF8C0030BF26 /* RequirementsAndSpecsApp.swift */,
+				91AFFC9A27B8579600E36674 /* Utils */,
 				91AE986D27B2F1A80030BF26 /* Constants.swift */,
 				91AE989927B301A60030BF26 /* ErrorEnums */,
 				91AE989427B2FBCC0030BF26 /* DatabaseModels */,
@@ -287,6 +290,14 @@
 			path = AppIcon.appiconset;
 			sourceTree = "<group>";
 		};
+		91AFFC9A27B8579600E36674 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				91AFFC9827B850DD00E36674 /* PDFUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -395,6 +406,7 @@
 				91AE988327B2F49F0030BF26 /* AddRequirementViewModel.swift in Sources */,
 				91AE987A27B2F36E0030BF26 /* Date+Extensions.swift in Sources */,
 				91AE987C27B2F4140030BF26 /* RequirementListViewModel.swift in Sources */,
+				91AFFC9927B850DD00E36674 /* PDFUtils.swift in Sources */,
 				91AFFC5D27B46A9100E36674 /* Defect.swift in Sources */,
 				91AFFC5B27B469AC00E36674 /* Test.swift in Sources */,
 				91AFFC5527B352FF00E36674 /* RequirementCell.swift in Sources */,
