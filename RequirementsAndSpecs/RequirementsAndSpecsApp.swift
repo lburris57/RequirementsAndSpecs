@@ -14,7 +14,7 @@ struct RequirementsAndSpecsApp: App
     {
         WindowGroup
         {
-            RequirementListView()
+            LoginView()
             .onAppear
             {
                 UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")

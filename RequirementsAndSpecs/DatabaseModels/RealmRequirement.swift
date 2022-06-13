@@ -1,5 +1,5 @@
 //
-//  Requirement.swift
+//  RealmRequirement.swift
 //  RequirementsAndSpecs
 //
 //  Created by Larry Burris on 2/8/22.
@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class Requirement : Object
+class RealmRequirement : Object
 {
     @Persisted(primaryKey: true) var id : String = UUID().uuidString
     @Persisted var requirementId : String = Constants.EMPTY_STRING
@@ -28,10 +28,10 @@ class Requirement : Object
     @Persisted var dateCreated: String = Date().asFormattedString()
     @Persisted var lastUpdated: String = Date().asFormattedString()
     
-    @Persisted var commentList = List<Comment>()
+    @Persisted var commentList = List<RealmComment>()
     
     //  Computed field to convert List<> into array
-    var comments: [Comment]
+    var comments: [RealmComment]
     {
         return DatabaseManager.convertToArrayFromList(results: commentList)
     }

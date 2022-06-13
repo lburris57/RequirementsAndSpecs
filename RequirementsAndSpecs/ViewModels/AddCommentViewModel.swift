@@ -12,7 +12,7 @@ class AddCommentViewModel: ObservableObject
     @Published var showAlert = false
     @Published var errorMessage: String?
     
-    func saveComment(_ comment: Comment)
+    func saveComment(_ comment: RealmComment)
     {
         do
         {

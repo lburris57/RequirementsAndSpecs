@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  RealmUser.swift
 //  RequirementsAndSpecs
 //
 //  Created by Larry Burris on 2/9/22.
@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class User : Object
+class RealmUser : Object
 {
     @Persisted(primaryKey: true) var id : String = UUID().uuidString
     @Persisted var userId : String = Constants.EMPTY_STRING
@@ -17,22 +17,22 @@ class User : Object
     @Persisted var dateCreated: String = Date().asFormattedString()
     @Persisted var lastUpdated: String = Date().asFormattedString()
     
-    @Persisted var groupList = List<UserGroup>()
-    @Persisted var roleList = List<Role>()
-    @Persisted var defectList = List<Defect>()
+    @Persisted var groupList = List<RealmUserGroup>()
+    @Persisted var roleList = List<RealmRole>()
+    @Persisted var defectList = List<RealmDefect>()
     
     //  Computed fields to convert List<> into array
-    var groups: [UserGroup]
+    var groups: [RealmUserGroup]
     {
         return DatabaseManager.convertToArrayFromList(results: groupList)
     }
     
-    var roles: [Role]
+    var roles: [RealmRole]
     {
         return DatabaseManager.convertToArrayFromList(results: roleList)
     }
     
-    var defects: [Defect]
+    var defects: [RealmDefect]
     {
         return DatabaseManager.convertToArrayFromList(results: defectList)
     }

@@ -1,27 +1,29 @@
 //
-//  Test.swift
+//  RealmDefect.swift
 //  RequirementsAndSpecs
 //
-//  Created by Larry Burris on 2/9/22.
+//  Created by Larry Burris on 2/8/22.
 //  Copyright © 2022 Larry Burris. All rights reserved.
 //
 import Foundation
 import RealmSwift
 
-class Test : Object
+class RealmDefect : Object
 {
     @Persisted(primaryKey: true) var id : String = UUID().uuidString
-    @Persisted var testId : String = Constants.EMPTY_STRING
+    @Persisted var defectId : String = Constants.EMPTY_STRING
     @Persisted var title : String = Constants.EMPTY_STRING
-    @Persisted var descriptionText : String = Constants.EMPTY_STRING
-    @Persisted var testType : String = Constants.EMPTY_STRING
+    @Persisted var severity : String = Constants.EMPTY_STRING
+    @Persisted var priority : String = Constants.EMPTY_STRING
+    @Persisted var assignedToUserId : String = Constants.EMPTY_STRING
+    @Persisted var isCompleted: Bool = false
     @Persisted var dateCreated: String = Date().asFormattedString()
     @Persisted var lastUpdated: String = Date().asFormattedString()
     
-    @Persisted var requirementList = List<Requirement>()
+    @Persisted var requirementList = List<RealmRequirement>()
     
     //  Computed field to convert List<> into array
-    var requirements: [Requirement]
+    var requirements: [RealmRequirement]
     {
         return DatabaseManager.convertToArrayFromList(results: requirementList)
     }

@@ -1,5 +1,5 @@
 //
-//  Comment.swift
+//  RealmComment.swift
 //  RequirementsAndSpecs
 //
 //  Created by Larry Burris on 2/8/22.
@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class Comment : Object
+class RealmComment : Object
 {
     @Persisted(primaryKey: true) var id : String = UUID().uuidString
     @Persisted var requirementId: String = Constants.EMPTY_STRING
@@ -19,5 +19,5 @@ class Comment : Object
     @Persisted var dateCreated: String = Date().asFormattedString()
     @Persisted var lastUpdated: String = Date().asFormattedString()
     
-    @Persisted(originProperty: "commentList") var parentRequirement : LinkingObjects<Requirement>
+    @Persisted(originProperty: "commentList") var parentRequirement : LinkingObjects<RealmRequirement>
 }

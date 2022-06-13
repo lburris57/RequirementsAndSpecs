@@ -9,7 +9,7 @@ import Foundation
 
 class RequirementDetailViewModel: ObservableObject
 {
-    @Published var requirement: Requirement = Requirement()
+    @Published var requirement: RealmRequirement = RealmRequirement()
     @Published var requirementId: String = Constants.EMPTY_STRING
     @Published var isLoading = false
     @Published var showAlert = false
@@ -38,7 +38,7 @@ class RequirementDetailViewModel: ObservableObject
         }
     }
     
-    func deleteComment(_ comment: Comment)
+    func deleteComment(_ comment: RealmComment)
     {
         let commentTitle = comment.title
         

@@ -9,7 +9,7 @@ import Foundation
 
 class RequirementListViewModel: ObservableObject
 {
-    @Published var requirements: [Requirement] = []
+    @Published var requirements: [RealmRequirement] = []
     @Published var isLoading = false
     @Published var showAlert = false
     @Published var errorMessage: String?
@@ -39,7 +39,7 @@ class RequirementListViewModel: ObservableObject
         }
     }
     
-    func saveRequirement(_ requirement: Requirement)
+    func saveRequirement(_ requirement: RealmRequirement)
     {
         isLoading = true
         
@@ -59,7 +59,7 @@ class RequirementListViewModel: ObservableObject
         }
     }
     
-    func deleteRequirement(_ requirement: Requirement)
+    func deleteRequirement(_ requirement: RealmRequirement)
     {
         isLoading = true
         

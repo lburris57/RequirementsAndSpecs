@@ -18,12 +18,12 @@ struct AddCommentView: View
     @State private var title = Constants.EMPTY_STRING
     @State private var description = Constants.EMPTY_STRING
     
-    var requirement: Requirement
+    var requirement: RealmRequirement
     
     //  Creates a new Requirement object, populates the values and calls the view model to save it to the database
     private func saveComment()
     {
-        let comment = Comment()
+        let comment = RealmComment()
             
         comment.requirementId = requirement.requirementId
         comment.title = title.capitalized
@@ -168,6 +168,6 @@ struct AddCommentView_Previews: PreviewProvider
 {
     static var previews: some View
     {
-        AddCommentView(requirement: RequirementListViewModel().requirements.count > 0 ? RequirementListViewModel().requirements[0] : Requirement())
+        AddCommentView(requirement: RequirementListViewModel().requirements.count > 0 ? RequirementListViewModel().requirements[0] : RealmRequirement())
     }
 }

@@ -6,6 +6,7 @@
 //  Copyright © 2022 Larry Burris. All rights reserved.
 //
 import SwiftUI
+import Inject
 
 // Enums
 enum SearchType: String, Identifiable, CaseIterable, Hashable
@@ -56,6 +57,8 @@ extension SearchType
 
 struct RequirementListView: View
 {
+    @ObserveInjection var inject
+    
     @StateObject var requirementListViewModel = RequirementListViewModel()
 
     @State private var isPresented: Bool = false
@@ -64,6 +67,11 @@ struct RequirementListView: View
     @State private var selectedSearchType: SearchType = .requirementId
     @State private var searchText = Constants.EMPTY_STRING
     @State var requirementListCount: Int = 0
+    
+    init()
+    {
+        Inject.animation = .interactiveSpring()
+    }
     
     private func deleteRequirement(at indexSet: IndexSet)
     {
@@ -153,7 +161,7 @@ struct RequirementListView: View
                         }
                     }
                     .onDelete(perform: deleteRequirement)
-                    .alert("Error Deleting Requirewment", isPresented: $showingAlert)
+                    .alert("Error Deleting Requirement", isPresented: $showingAlert)
                     {
                         Button("OK") {}
                         Button("Edit Requirement") {}
@@ -198,9 +206,10 @@ struct RequirementListView: View
         {
             requirementListViewModel.retrieveRequirementList()
         })
+        .enableInjection()
     }
     
-    var filteredRequirements: [Requirement]
+    var filteredRequirements: [RealmRequirement]
     {
         let filteredRequirements = requirementListViewModel.requirements
         

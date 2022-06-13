@@ -10,7 +10,7 @@ import SwiftUI
 //  Represents a cell in a table
 struct RequirementCell: View
 {
-    let requirement: Requirement
+    let requirement: RealmRequirement
     
     //  Returns the color based on the priority
     private func styleForPriority(_ value: String) -> Color

@@ -16,15 +16,15 @@ class DatabaseManager
     static let realm = try! Realm()
     
     // MARK: Retrieve Functions
-    static func retrieveAllRequirements() throws -> [Requirement]
+    static func retrieveAllRequirements() throws -> [RealmRequirement]
     {
-        var requirements = [Requirement]()
+        var requirements = [RealmRequirement]()
         
         do
         {
             try realm.write
             {
-                requirements = convertToArray(results: realm.objects(Requirement.self))
+                requirements = convertToArray(results: realm.objects(RealmRequirement.self))
             }
         }
         catch
@@ -39,15 +39,15 @@ class DatabaseManager
         return requirements
     }
     
-    static func retrieveAllComments() throws -> [Comment]
+    static func retrieveAllComments() throws -> [RealmComment]
     {
-        var comments = [Comment]()
+        var comments = [RealmComment]()
         
         do
         {
             try realm.write
             {
-                comments = convertToArray(results: realm.objects(Comment.self))
+                comments = convertToArray(results: realm.objects(RealmComment.self))
             }
         }
         catch
@@ -62,15 +62,15 @@ class DatabaseManager
         return comments
     }
     
-    static func retrieveRequirementById(_ requirementId: String) throws -> Requirement?
+    static func retrieveRequirementById(_ requirementId: String) throws -> RealmRequirement?
     {
-        var requirement: Requirement?
+        var requirement: RealmRequirement?
             
         do
         {
             try realm.write
             {
-                requirement = realm.objects(Requirement.self).filter("requirementId == '\(requirementId)'").first
+                requirement = realm.objects(RealmRequirement.self).filter("requirementId == '\(requirementId)'").first
             }
         }
         catch
@@ -85,15 +85,15 @@ class DatabaseManager
         return requirement
     }
     
-    static func retrieveCommentsByRequirement(_ requirement: Requirement) throws -> [Comment]
+    static func retrieveCommentsByRequirement(_ requirement: RealmRequirement) throws -> [RealmComment]
     {
-        var comments = [Comment]()
+        var comments = [RealmComment]()
             
         do
         {
             try realm.write
             {
-                comments = convertToArray(results: realm.objects(Comment.self).filter("requirementId == '\(requirement.requirementId)'"))
+                comments = convertToArray(results: realm.objects(RealmComment.self).filter("requirementId == '\(requirement.requirementId)'"))
             }
         }
         catch
@@ -108,15 +108,15 @@ class DatabaseManager
         return comments
     }
     
-    static func retrieveCommentsByRequirementId(_ requirementId: String) throws -> [Comment]
+    static func retrieveCommentsByRequirementId(_ requirementId: String) throws -> [RealmComment]
     {
-        var comments = [Comment]()
+        var comments = [RealmComment]()
             
         do
         {
             try realm.write
             {
-                comments = convertToArray(results: realm.objects(Comment.self).filter("requirementId == '\(requirementId)'"))
+                comments = convertToArray(results: realm.objects(RealmComment.self).filter("requirementId == '\(requirementId)'"))
             }
         }
         catch
@@ -132,7 +132,7 @@ class DatabaseManager
     }
     
     // MARK: Save/Update Functions
-    static func saveRequirement(_ requirement: Requirement) throws
+    static func saveRequirement(_ requirement: RealmRequirement) throws
     {
         do
         {
@@ -157,9 +157,9 @@ class DatabaseManager
         Log.info("\(Realm.Configuration.defaultConfiguration.fileURL!)")
     }
     
-    static func saveComment(_ comment: Comment) throws
+    static func saveComment(_ comment: RealmComment) throws
     {
-        var comments = [Comment]()
+        var comments = [RealmComment]()
         
         var nextCommentId = 1
         
@@ -170,7 +170,7 @@ class DatabaseManager
             try realm.write
             {
                 //  Retrieve the comment with the highest commentId number, add 1 and assign it to the new comment
-                comments = convertToArray(results: realm.objects(Comment.self).sorted(by: \.commentId))
+                comments = convertToArray(results: realm.objects(RealmComment.self).sorted(by: \.commentId))
                 
                 if comments.count > 0
                 {
@@ -198,7 +198,7 @@ class DatabaseManager
     }
     
     // MARK: Delete Functions
-    static func deleteRequirement(_ requirement: Requirement) throws
+    static func deleteRequirement(_ requirement: RealmRequirement) throws
     {
         let requirementId = requirement.requirementId
         
@@ -208,7 +208,7 @@ class DatabaseManager
             
             try realm.write
             {
-                let comments = convertToArray(results: realm.objects(Comment.self).filter("requirementId == '\(requirementId)'"))
+                let comments = convertToArray(results: realm.objects(RealmComment.self).filter("requirementId == '\(requirementId)'"))
                 
                 realm.delete(comments)
                 realm.delete(requirement)
@@ -226,7 +226,7 @@ class DatabaseManager
         Log.info("\(Realm.Configuration.defaultConfiguration.fileURL!)")
     }
     
-    static func deleteComment(_ comment: Comment) throws
+    static func deleteComment(_ comment: RealmComment) throws
     {
         let commentTitle = comment.title
         let requirementId = comment.requirementId
@@ -237,7 +237,7 @@ class DatabaseManager
             
             try realm.write
             {
-                var fetchedComments = convertToArray(results: realm.objects(Comment.self).filter("requirementId == '\(requirementId)'"))
+                var fetchedComments = convertToArray(results: realm.objects(RealmComment.self).filter("requirementId == '\(requirementId)'"))
                 
                 Log.info("Count of fetchedComments is: \(fetchedComments.count)")
                 
@@ -250,7 +250,7 @@ class DatabaseManager
                 //  Delete the incoming comment
                 realm.delete(comment)
                 
-                if let requirement = realm.objects(Requirement.self).filter("requirementId == '\(requirementId)'").first
+                if let requirement = realm.objects(RealmRequirement.self).filter("requirementId == '\(requirementId)'").first
                 {
                     //  Remove any existing comments from the requirement
                     requirement.commentList.removeAll()
@@ -297,7 +297,7 @@ class DatabaseManager
                     
                     if comments.count == 0
                     {
-                        let comment = Comment()
+                        let comment = RealmComment()
                         
                         comment.requirementId = requirementId
                         
@@ -360,7 +360,7 @@ class DatabaseManager
                     realm.add(requirement, update: .modified)
                     
                     //  Remove any comments that are not linked to a requirement
-                    let unlinkedComments = convertToArray(results: realm.objects(Comment.self).filter("requirementId == ''"))
+                    let unlinkedComments = convertToArray(results: realm.objects(RealmComment.self).filter("requirementId == ''"))
                     
                     realm.delete(unlinkedComments)
                 }

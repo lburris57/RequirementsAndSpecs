@@ -16,7 +16,7 @@ struct RequirementDetailView: View
     @State private var showingAlert: Bool = false
     @State var commentListCount: Int = 0
 
-    var requirement: Requirement
+    var requirement: RealmRequirement
     
     private func deleteComment(at indexSet: IndexSet)
     {

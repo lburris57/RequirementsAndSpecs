@@ -201,7 +201,7 @@ struct AddRequirementView: View
     //  Creates a new Requirement object, populates the values and calls the view model to save it to the database
     private func saveRequirement()
     {
-        let requirement = Requirement()
+        let requirement = RealmRequirement()
             
         requirement.requirementId = requirementId
         requirement.title = title.capitalized
@@ -271,7 +271,7 @@ struct AddRequirementView: View
     }
     
     //  Toggles the isCompleted value of the requirement and saves the updated value
-    private func updateIsCompleted(_ requirement: Requirement)
+    private func updateIsCompleted(_ requirement: RealmRequirement)
     {
         requirement.isCompleted.toggle()
         requirement.lastUpdated = Date().asFormattedString()

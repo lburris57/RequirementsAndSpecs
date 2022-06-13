@@ -9,5 +9,5 @@ import Foundation
 
 class RequirementViewModel: ObservableObject
 {
-    let requirement = Requirement()
+    let requirement = RealmRequirement()
 }
