@@ -20,13 +20,13 @@ struct RequirementCell: View
         switch priority
         {
             case .low:
-                return Color.green
+                return .green
             case .medium:
-                return Color.orange
+                return .orange
             case .high:
-                return Color.red
+                return .red
             default:
-                return Color.blue
+                return .blue
         }
     }
 

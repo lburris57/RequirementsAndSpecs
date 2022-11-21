@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		911BCC06286128940010F0AD /* TextInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911BCC05286128940010F0AD /* TextInputField.swift */; };
 		9171C7F127FE464F00BFE4AF /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 9171C7F027FE464F00BFE4AF /* Realm */; };
 		9171C7F327FE464F00BFE4AF /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9171C7F227FE464F00BFE4AF /* RealmSwift */; };
 		917EE4F628567F88005C8D92 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917EE4F528567F88005C8D92 /* CoreDataManager.swift */; };
@@ -36,6 +37,7 @@
 		917EE52A2856B0A2005C8D92 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917EE5292856B0A2005C8D92 /* Test.swift */; };
 		917EE52C2856B0AE005C8D92 /* Defect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917EE52B2856B0AE005C8D92 /* Defect.swift */; };
 		917EE52E2856B0C3005C8D92 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917EE52D2856B0C3005C8D92 /* Comment.swift */; };
+		917EE53228580924005C8D92 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 917EE53128580924005C8D92 /* CloudKit.framework */; };
 		9192343A28287D7E00AB6311 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = 9192343928287D7E00AB6311 /* Inject */; };
 		91AE985127B2EF8C0030BF26 /* RequirementsAndSpecsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE985027B2EF8C0030BF26 /* RequirementsAndSpecsApp.swift */; };
 		91AE985527B2EF8F0030BF26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91AE985427B2EF8F0030BF26 /* Assets.xcassets */; };
@@ -98,6 +100,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		911BCC05286128940010F0AD /* TextInputField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputField.swift; sourceTree = "<group>"; };
 		917EE4F528567F88005C8D92 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		917EE4F92856807A005C8D92 /* RequirementsAndSpecsDatabaseModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RequirementsAndSpecsDatabaseModel.xcdatamodel; sourceTree = "<group>"; };
 		917EE4FB28569A63005C8D92 /* DefectEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefectEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 		917EE5292856B0A2005C8D92 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		917EE52B2856B0AE005C8D92 /* Defect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defect.swift; sourceTree = "<group>"; };
 		917EE52D2856B0C3005C8D92 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		917EE52F285808FE005C8D92 /* RequirementsAndSpecs.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RequirementsAndSpecs.entitlements; sourceTree = "<group>"; };
+		917EE53128580924005C8D92 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		91AE984D27B2EF8C0030BF26 /* RequirementsAndSpecs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RequirementsAndSpecs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91AE985027B2EF8C0030BF26 /* RequirementsAndSpecsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementsAndSpecsApp.swift; sourceTree = "<group>"; };
 		91AE985427B2EF8F0030BF26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -193,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9171C7F327FE464F00BFE4AF /* RealmSwift in Frameworks */,
+				917EE53228580924005C8D92 /* CloudKit.framework in Frameworks */,
 				9171C7F127FE464F00BFE4AF /* Realm in Frameworks */,
 				9192343A28287D7E00AB6311 /* Inject in Frameworks */,
 			);
@@ -241,11 +247,20 @@
 			path = DisplayModels;
 			sourceTree = "<group>";
 		};
+		917EE53028580924005C8D92 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				917EE53128580924005C8D92 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		91AE984427B2EF8C0030BF26 = {
 			isa = PBXGroup;
 			children = (
 				91AE984F27B2EF8C0030BF26 /* RequirementsAndSpecs */,
 				91AE984E27B2EF8C0030BF26 /* Products */,
+				917EE53028580924005C8D92 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -260,6 +275,7 @@
 		91AE984F27B2EF8C0030BF26 /* RequirementsAndSpecs */ = {
 			isa = PBXGroup;
 			children = (
+				917EE52F285808FE005C8D92 /* RequirementsAndSpecs.entitlements */,
 				91AFFC9727B835F600E36674 /* Info.plist */,
 				91AE985027B2EF8C0030BF26 /* RequirementsAndSpecsApp.swift */,
 				91AE986D27B2F1A80030BF26 /* Constants.swift */,
@@ -291,6 +307,7 @@
 		91AE985F27B2F1120030BF26 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				911BCC05286128940010F0AD /* TextInputField.swift */,
 				91AE986027B2F1120030BF26 /* RequirementListView.swift */,
 				91AFFC5427B352FF00E36674 /* RequirementCell.swift */,
 				91AE986127B2F1120030BF26 /* RequirementDetailView.swift */,
@@ -535,6 +552,7 @@
 				91AFFC5527B352FF00E36674 /* RequirementCell.swift in Sources */,
 				91AE989627B2FC0D0030BF26 /* RealmRequirement.swift in Sources */,
 				917EE4F628567F88005C8D92 /* CoreDataManager.swift in Sources */,
+				911BCC06286128940010F0AD /* TextInputField.swift in Sources */,
 				917EE50E28569A63005C8D92 /* RequirementEntity+CoreDataProperties.swift in Sources */,
 				917EE51228569A63005C8D92 /* RoleEntity+CoreDataProperties.swift in Sources */,
 				917EE5262856B083005C8D92 /* Role.swift in Sources */,
@@ -693,6 +711,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RequirementsAndSpecs/RequirementsAndSpecs.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RequirementsAndSpecs/Preview Content\"";
@@ -728,6 +747,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RequirementsAndSpecs/RequirementsAndSpecs.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RequirementsAndSpecs/Preview Content\"";

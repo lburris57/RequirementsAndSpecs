@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="CommentEntity" representedClassName="CommentEntity" syncable="YES">
-        <attribute name="author" attributeType="String"/>
-        <attribute name="commentId" attributeType="String"/>
-        <attribute name="commentText" attributeType="String"/>
+        <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="commentId" optional="YES" attributeType="String"/>
+        <attribute name="commentText" optional="YES" attributeType="String"/>
         <attribute name="dateCreated" attributeType="Date" defaultDateTimeInterval="676761600" usesScalarValueType="NO"/>
         <attribute name="lastUpdated" attributeType="Date" defaultDateTimeInterval="676761600" usesScalarValueType="NO"/>
-        <attribute name="title" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="requirement" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RequirementEntity" inverseName="comments" inverseEntity="RequirementEntity"/>
     </entity>
     <entity name="DefectEntity" representedClassName="DefectEntity" syncable="YES">
         <attribute name="assignedToUserId" optional="YES" attributeType="String"/>
         <attribute name="dateCreated" attributeType="Date" defaultDateTimeInterval="676760400" usesScalarValueType="NO"/>
-        <attribute name="defectId" attributeType="String"/>
+        <attribute name="defectId" optional="YES" attributeType="String"/>
         <attribute name="isCompleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lastUpdated" attributeType="Date" defaultDateTimeInterval="676760400" usesScalarValueType="NO"/>
-        <attribute name="priority" attributeType="String"/>
-        <attribute name="severity" attributeType="String"/>
-        <attribute name="title" attributeType="String"/>
+        <attribute name="priority" optional="YES" attributeType="String"/>
+        <attribute name="severity" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="requirements" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RequirementEntity" inverseName="defect" inverseEntity="RequirementEntity"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="defects" inverseEntity="UserEntity"/>
     </entity>
     <entity name="ProjectEntity" representedClassName="ProjectEntity" syncable="YES">
-        <attribute name="createdBy" attributeType="String"/>
+        <attribute name="createdBy" optional="YES" attributeType="String"/>
         <attribute name="dateCreated" attributeType="Date" defaultDateTimeInterval="676758960" usesScalarValueType="NO"/>
-        <attribute name="descriptionText" attributeType="String"/>
+        <attribute name="descriptionText" optional="YES" attributeType="String"/>
         <attribute name="lastUpdated" attributeType="Date" defaultDateTimeInterval="676758960" usesScalarValueType="NO"/>
-        <attribute name="projectId" attributeType="String"/>
-        <attribute name="title" attributeType="String"/>
+        <attribute name="projectId" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserGroupEntity" inverseName="projects" inverseEntity="UserGroupEntity"/>
         <relationship name="requirements" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RequirementEntity" inverseName="project" inverseEntity="RequirementEntity"/>
         <relationship name="roles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RoleEntity" inverseName="projects" inverseEntity="RoleEntity"/>
@@ -35,21 +35,21 @@
     </entity>
     <entity name="RequirementEntity" representedClassName="RequirementEntity" syncable="YES">
         <attribute name="behaviorialTestId" optional="YES" attributeType="String"/>
-        <attribute name="category" attributeType="String"/>
-        <attribute name="complexity" attributeType="String"/>
-        <attribute name="createdBy" attributeType="String"/>
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="complexity" optional="YES" attributeType="String"/>
+        <attribute name="createdBy" optional="YES" attributeType="String"/>
         <attribute name="dateCreated" attributeType="Date" defaultDateTimeInterval="676758540" usesScalarValueType="NO"/>
-        <attribute name="descriptionText" attributeType="String"/>
-        <attribute name="functionalArea" attributeType="String"/>
-        <attribute name="group" attributeType="String"/>
+        <attribute name="descriptionText" optional="YES" attributeType="String"/>
+        <attribute name="functionalArea" optional="YES" attributeType="String"/>
+        <attribute name="group" optional="YES" attributeType="String"/>
         <attribute name="isCompleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isValidated" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lastUpdated" attributeType="Date" defaultDateTimeInterval="676758240" usesScalarValueType="NO"/>
-        <attribute name="priority" attributeType="String"/>
+        <attribute name="priority" optional="YES" attributeType="String"/>
         <attribute name="relatedDocuments" optional="YES" attributeType="String"/>
-        <attribute name="requirementId" attributeType="String"/>
+        <attribute name="requirementId" optional="YES" attributeType="String"/>
         <attribute name="status" attributeType="String" defaultValueString="Awaiting Assignment"/>
-        <attribute name="title" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="unitTestId" optional="YES" attributeType="String"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CommentEntity" inverseName="requirement" inverseEntity="CommentEntity"/>
         <relationship name="defect" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DefectEntity" inverseName="requirements" inverseEntity="DefectEntity"/>
@@ -60,26 +60,26 @@
     <entity name="RoleEntity" representedClassName="RoleEntity" syncable="YES">
         <attribute name="dateCreated" attributeType="Date" defaultDateTimeInterval="676759140" usesScalarValueType="NO"/>
         <attribute name="lastUpdated" attributeType="Date" defaultDateTimeInterval="676759140" usesScalarValueType="NO"/>
-        <attribute name="roleId" attributeType="String"/>
-        <attribute name="roleName" attributeType="String"/>
+        <attribute name="roleId" optional="YES" attributeType="String"/>
+        <attribute name="roleName" optional="YES" attributeType="String"/>
         <relationship name="projects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectEntity" inverseName="roles" inverseEntity="ProjectEntity"/>
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="roles" inverseEntity="UserEntity"/>
     </entity>
     <entity name="TestEntity" representedClassName="TestEntity" syncable="YES">
         <attribute name="dateCreated" attributeType="Date" defaultDateTimeInterval="676760040" usesScalarValueType="NO"/>
-        <attribute name="descriptionText" attributeType="String"/>
+        <attribute name="descriptionText" optional="YES" attributeType="String"/>
         <attribute name="lastUpdated" attributeType="Date" defaultDateTimeInterval="676760040" usesScalarValueType="NO"/>
-        <attribute name="testId" attributeType="String"/>
-        <attribute name="testType" attributeType="String"/>
-        <attribute name="title" attributeType="String"/>
+        <attribute name="testId" optional="YES" attributeType="String"/>
+        <attribute name="testType" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="requirements" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RequirementEntity" inverseName="test" inverseEntity="RequirementEntity"/>
     </entity>
     <entity name="UserEntity" representedClassName="UserEntity" syncable="YES">
         <attribute name="dateCreated" attributeType="Date" defaultDateTimeInterval="676758780" usesScalarValueType="NO"/>
         <attribute name="lastUpdated" attributeType="Date" defaultDateTimeInterval="676758720" usesScalarValueType="NO"/>
-        <attribute name="password" attributeType="String" allowsCloudEncryption="YES"/>
-        <attribute name="userId" attributeType="String"/>
-        <attribute name="userName" attributeType="String"/>
+        <attribute name="password" optional="YES" attributeType="String" allowsCloudEncryption="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String"/>
+        <attribute name="userName" optional="YES" attributeType="String"/>
         <relationship name="defects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DefectEntity" inverseName="user" inverseEntity="DefectEntity"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserGroupEntity" inverseName="users" inverseEntity="UserGroupEntity"/>
         <relationship name="projects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectEntity" inverseName="users" inverseEntity="ProjectEntity"/>
@@ -88,8 +88,8 @@
     </entity>
     <entity name="UserGroupEntity" representedClassName="UserGroupEntity" syncable="YES">
         <attribute name="dateCreated" attributeType="Date" defaultDateTimeInterval="676759320" usesScalarValueType="NO"/>
-        <attribute name="groupId" attributeType="String"/>
-        <attribute name="groupName" attributeType="String"/>
+        <attribute name="groupId" optional="YES" attributeType="String"/>
+        <attribute name="groupName" optional="YES" attributeType="String"/>
         <attribute name="lastUpdated" attributeType="Date" defaultDateTimeInterval="676759320" usesScalarValueType="NO"/>
         <relationship name="projects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectEntity" inverseName="groups" inverseEntity="ProjectEntity"/>
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="groups" inverseEntity="UserEntity"/>
@@ -102,6 +102,6 @@
         <element name="UserGroupEntity" positionX="0" positionY="153" width="128" height="119"/>
         <element name="TestEntity" positionX="18" positionY="162" width="128" height="134"/>
         <element name="DefectEntity" positionX="36" positionY="180" width="128" height="179"/>
-        <element name="CommentEntity" positionX="-9" positionY="144" width="128" height="14"/>
+        <element name="CommentEntity" positionX="-9" positionY="144" width="128" height="134"/>
     </elements>
 </model>

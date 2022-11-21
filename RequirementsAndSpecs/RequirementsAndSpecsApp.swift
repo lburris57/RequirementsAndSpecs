@@ -14,7 +14,10 @@ struct RequirementsAndSpecsApp: App
     {
         WindowGroup
         {
+            let viewContext = CoreDataManager.shared.persistentContainer.viewContext
+            
             LoginView()
+                .environment(\.managedObjectContext, viewContext)
             .onAppear
             {
                 UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")

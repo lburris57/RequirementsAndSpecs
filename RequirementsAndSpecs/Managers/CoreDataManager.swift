@@ -21,6 +21,7 @@ class CoreDataManager
         persistentContainer.persistentStoreDescriptions.first!.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+        persistentContainer.persistentStoreDescriptions.first!.cloudKitContainerOptions?.databaseScope = .public
         persistentContainer.loadPersistentStores
         {
             _, error in

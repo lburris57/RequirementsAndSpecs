@@ -180,7 +180,9 @@ struct AddRequirementView: View
 {
     @Environment(\.presentationMode) var presentationMode
     
-    @StateObject private var requirementListViewModel = RequirementListViewModel()
+    let viewContext = CoreDataManager.shared.persistentContainer.viewContext
+    
+    @ObservedObject private var requirementListViewModel: RequirementListViewModel
     
     @State private var showingAlert: Bool = false
     
@@ -197,6 +199,11 @@ struct AddRequirementView: View
     @State private var unitTestId = Constants.EMPTY_STRING
     @State private var behavioralTestId = Constants.EMPTY_STRING
     @State private var isCompleted = false
+    
+    init()
+    {
+        requirementListViewModel = RequirementListViewModel(viewContext: viewContext)
+    }
     
     //  Creates a new Requirement object, populates the values and calls the view model to save it to the database
     private func saveRequirement()
@@ -310,11 +317,11 @@ struct AddRequirementView: View
             {
                 VStack(alignment: .leading, spacing: 10)
                 {
-                    TextField("Enter requirement id", text: $requirementId)
+                    TextInputField("Requirement ID", text: $requirementId)
                         .textFieldStyle(.roundedBorder)
                         .padding(.horizontal)
                     
-                    TextField("Enter title", text: $title)
+                    TextInputField("Title", text: $title)
                         .textFieldStyle(.roundedBorder)
                         .padding(.horizontal)
                     
@@ -322,6 +329,7 @@ struct AddRequirementView: View
                     {
                         Text(" Description:")
                             .foregroundColor(Color.secondary)
+                            .fontWeight(.bold)
                             .padding(.horizontal)
                         
                         TextEditor(text: $description)

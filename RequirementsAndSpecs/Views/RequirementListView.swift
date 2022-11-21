@@ -59,40 +59,38 @@ struct RequirementListView: View
 {
     @ObserveInjection var inject
     
-    @StateObject var requirementListViewModel = RequirementListViewModel()
+    //@Environment(\.managedObjectContext) var viewContext
+    
+    let viewContext = CoreDataManager.shared.persistentContainer.viewContext
+    
+    @ObservedObject var requirementListViewModel: RequirementListViewModel
 
     @State private var isPresented: Bool = false
     @State private var showingAlert: Bool = false
     @State private var showSearchCriteria: Bool = false
     @State private var selectedSearchType: SearchType = .requirementId
     @State private var searchText = Constants.EMPTY_STRING
-    @State var requirementListCount: Int = 0
+    @State var requirementListCount: Int = Constants.ZERO
     
-    init()
+    init(requirementListViewModel: RequirementListViewModel)
     {
         Inject.animation = .interactiveSpring()
+        
+        self.requirementListViewModel = RequirementListViewModel(viewContext: viewContext)
     }
     
     private func deleteRequirement(at indexSet: IndexSet)
     {
-        // Delete the requirement only if there are more than one
-        if requirementListCount > 1
+        indexSet.forEach
         {
-            indexSet.forEach
-            {
-                index in
+            index in
 
-                let requirement = requirementListViewModel.requirements[index]
+            let requirement = requirementListViewModel.requirements[index]
 
-                requirementListViewModel.deleteRequirement(requirement)
+            requirementListViewModel.deleteRequirement(requirement)
 
-                // Refresh the requirements list in the view model
-                requirementListViewModel.retrieveRequirementList()
-            }
-        }
-        else
-        {
-            showingAlert = true
+            // Refresh the requirements list in the view model
+            requirementListViewModel.retrieveRequirementList()
         }
     }
     
@@ -110,7 +108,7 @@ struct RequirementListView: View
     {
         VStack
         {
-            if requirementListViewModel.requirements.count == 0
+            if requirementListViewModel.requirements.count == Constants.ZERO
             {
                 List
                 {
@@ -166,10 +164,6 @@ struct RequirementListView: View
                         Button("OK") {}
                         Button("Edit Requirement") {}
                     }
-                    message:
-                    {
-                        Text("There must be at least two requirements in the list to activate the delete functionality!\n\nPlease edit the existing requirement.")
-                    }
                 }
                 .listStyle(.plain)
             }
@@ -183,9 +177,6 @@ struct RequirementListView: View
             {
                 HStack
                 {
-                    //  Only display the Edit button if more than one requirement
-                    requirementListCount > 1 ? EditButton() : nil
-                    
                     Button(action: presentAddRequirementView)
                     {
                         Label("Add Requirement", systemImage: "plus.circle.fill").foregroundColor(.blue)
@@ -248,6 +239,8 @@ struct RequirementListView_Previews: PreviewProvider
 {
     static var previews: some View
     {
-        RequirementListView()
+        let viewContext = CoreDataManager.shared.persistentContainer.viewContext
+        
+        RequirementListView(requirementListViewModel: RequirementListViewModel(viewContext: viewContext))
     }
 }

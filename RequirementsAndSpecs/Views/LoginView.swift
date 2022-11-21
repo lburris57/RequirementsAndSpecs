@@ -9,6 +9,8 @@ import SwiftUI
 
 struct LoginView: View
 {
+    @Environment(\.managedObjectContext) var viewContext
+    
     @StateObject var vm = LoginViewModel()
 
     var body: some View
@@ -16,15 +18,7 @@ struct LoginView: View
         if vm.authenticated
         {
             // Show the view you want users to see when logged on
-//            VStack(spacing: 20)
-//            {
-//                Text("Welcome back **\(vm.username.lowercased())**!")
-//                Text("Today is: **\(Date().formatted(.dateTime))**")
-//                Button("Log out", action: vm.logOut)
-//                    .tint(.red)
-//                    .buttonStyle(.bordered)
-//            }
-            RequirementListView()
+            RequirementListView(requirementListViewModel: RequirementListViewModel(viewContext: viewContext))
         }
         else
         {

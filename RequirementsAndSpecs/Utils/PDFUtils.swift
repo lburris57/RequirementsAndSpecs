@@ -12,11 +12,13 @@ class PDFUtils
     //  Takes the existing view and converts it to a PDF file
     static func exportToPDF()
     {
+        let viewContext = CoreDataManager.shared.persistentContainer.viewContext
+        
         let outputFileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("SwiftUI.pdf")
         let pageSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
 
         // View to render on PDF
-        let myUIHostingController = UIHostingController(rootView: RequirementListView())
+        let myUIHostingController = UIHostingController(rootView: RequirementListView(requirementListViewModel: RequirementListViewModel(viewContext: viewContext)))
         myUIHostingController.view.frame = CGRect(origin: .zero, size: pageSize)
 
         // Get the view behind all other views

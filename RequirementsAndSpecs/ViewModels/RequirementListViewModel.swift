@@ -6,6 +6,7 @@
 //  Copyright © 2022 Larry Burris. All rights reserved.
 //
 import Foundation
+import CoreData
 
 class RequirementListViewModel: ObservableObject
 {
@@ -14,8 +15,12 @@ class RequirementListViewModel: ObservableObject
     @Published var showAlert = false
     @Published var errorMessage: String?
     
-    init()
+    private (set) var viewContext: NSManagedObjectContext
+    
+    init(viewContext: NSManagedObjectContext)
     {
+        self.viewContext = viewContext
+        
         retrieveRequirementList()
     }
     

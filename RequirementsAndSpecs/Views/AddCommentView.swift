@@ -66,7 +66,7 @@ struct AddCommentView: View
                     {
                         HStack
                         {
-                            Text("Requirement Id:").fontWeight(.bold)
+                            Text("Requirement ID:").fontWeight(.bold)
                             Spacer()
                         }
                         
@@ -114,10 +114,10 @@ struct AddCommentView: View
                     
                     VStack(alignment: .leading, spacing: 5)
                     {
-                        TextField("Enter title", text: $title)
+                        TextInputField("Comment Title", text: $title)
                             .textFieldStyle(.roundedBorder)
                         
-                        Text(" Enter Comment:")
+                        Text(" Comment:").fontWeight(.bold).foregroundColor(Color.secondary)
                         
                         TextEditor(text: $description)
                         .lineLimit(10)
@@ -139,7 +139,7 @@ struct AddCommentView: View
                         .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
                         .shadow(color: .black, radius: 2.0, x: 2.0, y: 2.0)
                         .disabled(!evaluateFields())
-                    }
+                    }.padding(5)
                 }
                 .navigationTitle("Add Comment")
                 .navigationBarTitleDisplayMode(.inline)
@@ -168,6 +168,8 @@ struct AddCommentView_Previews: PreviewProvider
 {
     static var previews: some View
     {
-        AddCommentView(requirement: RequirementListViewModel().requirements.count > 0 ? RequirementListViewModel().requirements[0] : RealmRequirement())
+        let viewContext = CoreDataManager.shared.persistentContainer.viewContext
+        
+        AddCommentView(requirement: RequirementListViewModel(viewContext: viewContext).requirements.count > 0 ? RequirementListViewModel(viewContext: viewContext).requirements[0] : RealmRequirement())
     }
 }
